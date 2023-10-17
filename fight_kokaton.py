@@ -161,10 +161,12 @@ class Bomb:
 
 
 class Explosion:
-    """
-    爆発エフェクトに関する関数
-    """
     def __init__(self, bomb: Bomb, life: int):
+        """
+        爆発エフェクトの生成
+        引数1 bomb：ばくだんインスタンス
+        引数2 life：整数
+        """
         img = pg.image.load(f"ex03/fig/explosion.gif")
         self.imgs = [img,pg.transform.flip(img, 1, 1)]
         self.img = self.imgs[0]
@@ -173,6 +175,10 @@ class Explosion:
         self.life = life
 
     def update(self, screen: pg.Surface):
+        """
+        lifeの値に応じて表示する爆発エフェクトの変更
+        引数 screen：画面Surface
+        """
         self.life -= 1
         self.img = self.imgs[self.life//10%2]
         screen.blit(self.img, self.rct)
